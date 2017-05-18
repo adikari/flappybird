@@ -1,5 +1,6 @@
 package com.subash.game.state;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.subash.game.FlappyBird;
@@ -17,12 +18,15 @@ public class MenuState extends State {
 
   @Override
   protected void handleInput() {
-    // TODO Auto-generated method stub
+    if (Gdx.input.justTouched()) {
+      stateManager.set(new PlayState(stateManager));
+      dispose();
+    }
   }
 
   @Override
   public void update(float deltaTime) {
-    // TODO Auto-generated method stub
+    handleInput();
   }
 
   @Override
