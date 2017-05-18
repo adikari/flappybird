@@ -1,43 +1,50 @@
 package com.subash.game.state;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.subash.game.FlappyBird;
+import com.subash.game.sprite.Bird;
 
 public class PlayState extends State {
 
-  private Texture bird;
+  private Bird bird;
+  private Texture background;
 
   public PlayState(StateManager stateManager) {
     super(stateManager);
-    bird = new Texture("bird.png");
+    bird = new Bird(50, 100);
+    background = new Texture("bg.png");
 
     camera.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
   }
 
   @Override
   protected void handleInput() {
-    // TODO Auto-generated method stub
-
+    if (Gdx.input.justTouched()) {
+      bird.jump();
+    }
   }
 
   @Override
   public void update(float deltaTime) {
-    // TODO Auto-generated method stub
-
+    handleInput();
+    bird.update(deltaTime);
   }
 
   @Override
   public void render(SpriteBatch batch) {
     batch.setProjectionMatrix(camera.combined);
+
     batch.begin();
-    batch.draw(bird, 50, 50);
+    batch.draw(background, camera.position.x - (camera.viewportWidth / 2), 0);
+    batch.draw(bird.getTexture(), bird.getPosition().x, bird.getPosition().y);
+
     batch.end();
   }
 
   @Override
   public void dispose() {
-    // TODO Auto-generated method stub
-
+    bird.dispose();
   }
 }

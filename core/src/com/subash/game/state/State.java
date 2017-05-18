@@ -3,8 +3,9 @@ package com.subash.game.state;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Disposable;
 
-public abstract class State {
+public abstract class State implements Disposable {
 
   protected OrthographicCamera camera;
   protected Vector3 mouse;
@@ -34,9 +35,4 @@ public abstract class State {
    * @param batch Sprite to render
    */
   public abstract void render(SpriteBatch batch);
-
-  /**
-   * Dispose the sprite batch
-   */
-  public abstract void dispose();
 }
