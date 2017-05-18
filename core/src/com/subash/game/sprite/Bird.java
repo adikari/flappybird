@@ -31,11 +31,18 @@ public class Bird implements Disposable {
   }
 
   public void update(float deltaTime) {
-    velocity.add(0, GRAVITY, 0);
+    if (position.y > 0) {
+      velocity.add(0, GRAVITY, 0);
+    }
+
     velocity.scl(deltaTime);
 
     position.add(0, velocity.y, 0);
     velocity.scl(1 / deltaTime);
+
+    if (position.y < 0) {
+      position.y = 0;
+    }
   }
 
   public void jump() {

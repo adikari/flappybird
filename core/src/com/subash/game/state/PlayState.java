@@ -5,15 +5,20 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.subash.game.FlappyBird;
 import com.subash.game.sprite.Bird;
+import com.subash.game.sprite.Tube;
 
 public class PlayState extends State {
 
   private Bird bird;
+  private Tube tube;
   private Texture background;
 
   public PlayState(StateManager stateManager) {
     super(stateManager);
+
     bird = new Bird(50, 100);
+    tube = new Tube(100);
+
     background = new Texture("bg.png");
 
     camera.setToOrtho(false, FlappyBird.WIDTH / 2, FlappyBird.HEIGHT / 2);
@@ -39,6 +44,8 @@ public class PlayState extends State {
     batch.begin();
     batch.draw(background, camera.position.x - (camera.viewportWidth / 2), 0);
     batch.draw(bird.getTexture(), bird.getPosition().x, bird.getPosition().y);
+    batch.draw(tube.getTopTube(), tube.getTopTubePos().x, tube.getTopTubePos().y);
+    batch.draw(tube.getBottomTube(), tube.getBottomTubePos().x, tube.getBottomTubePos().y);
 
     batch.end();
   }
