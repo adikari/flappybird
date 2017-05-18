@@ -5,7 +5,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Bird implements Disposable {
+
   private static final int GRAVITY = -15;
+  private static final int MOVEMENT = 100;
 
   private Vector3 position, velocity;
   private Texture texture;
@@ -37,7 +39,7 @@ public class Bird implements Disposable {
 
     velocity.scl(deltaTime);
 
-    position.add(0, velocity.y, 0);
+    position.add(MOVEMENT * deltaTime, velocity.y, 0);
     velocity.scl(1 / deltaTime);
 
     if (position.y < 0) {
