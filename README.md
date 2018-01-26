@@ -9,3 +9,5 @@ Flappy bird game I am building to learn game development in Java using libgdx.
 ```
 
 For other tasks, please check [gradle file](desktop/build.gradle).
+
+![Flappy Bird](screenshots/flappy.png)
